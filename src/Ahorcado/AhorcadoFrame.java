@@ -16,13 +16,17 @@ public class AhorcadoFrame extends javax.swing.JFrame {
      */
     String palabraS = "shit";
     char letraIngr[] = new char[palabraS.length()];
+    String labelT = "";
     
     public AhorcadoFrame() {
         initComponents();
         
-        String labelT = "";
+        
         for(int i = 0; i< palabraS.length(); i++){
-            labelT =labelT + "_ ";
+           
+            letraIngr[i] = '_';
+            labelT = labelT + letraIngr[i] + " ";
+            
         }
         label.setText(labelT);
     }
@@ -58,6 +62,11 @@ public class AhorcadoFrame extends javax.swing.JFrame {
 
         button.setFont(new java.awt.Font("Oswald Regular", 0, 14)); // NOI18N
         button.setText("Ingresar Letra");
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                buttonMousePressed(evt);
+            }
+        });
         button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonActionPerformed(evt);
@@ -109,6 +118,25 @@ public class AhorcadoFrame extends javax.swing.JFrame {
     private void buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonActionPerformed
+
+    private void buttonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonMousePressed
+        // TODO add your handling code here:
+        String ingrTexto = ingr.getText();
+        char ingrChar = ingrTexto.charAt(0);
+        System.out.println("Letra ingr: " + ingrChar);
+        for(int u = 0; u< palabraS.length(); u++){
+            if(ingrChar == palabraS.charAt(u)){
+                System.out.println("Letra encontrada!");
+                for(int i = 0; i< palabraS.length(); i++){
+                    labelT = "";
+                    labelT = labelT + letraIngr[i] + " ";
+                }
+                System.out.println("visible: " + labelT);
+                
+            }
+        }
+            
+    }//GEN-LAST:event_buttonMousePressed
 
     /**
      * @param args the command line arguments
